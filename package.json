@@ -1,0 +1,25 @@
+{
+  "name": "mcp-mailboxvalidator",
+  "version": "1.0.0",
+  "description": "MailboxValidator MCP server that checks validity of email address using MailboxValidator API.",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": ["build"],
+  "keywords": ["email validation", "mailboxvalidator"],
+  "author": "MailboxValidator",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "mailboxvalidator": "./build/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^6.0.2"
+  }
+}

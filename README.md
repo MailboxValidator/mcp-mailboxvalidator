@@ -2,6 +2,8 @@
 
 This is a simple Model Context Protocol (MCP) server implementation for MailboxValidator API. It will return validation result for an email address.
 
+[![mcp-mailboxvalidator MCP server](https://glama.ai/mcp/servers/MailboxValidator/mcp-mailboxvalidator/badges/card.svg)](https://glama.ai/mcp/servers/MailboxValidator/mcp-mailboxvalidator)
+
 # Features
 
 - **Comprehensive Email Validation**: Checking an email address to see if an email is reachable by checking the syntax, DNS, MX server, high risk, suppressed list, and more.

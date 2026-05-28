@@ -11,6 +11,11 @@
   "author": "MailboxValidator",
   "license": "MIT",
   "type": "module",
+  "mcpName": "io.github.MailboxValidator/mcp-mailboxvalidator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MailboxValidator/mcp-mailboxvalidator.git"
+  },
   "bin": {
     "mailboxvalidator": "./build/index.js"
   },

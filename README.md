@@ -14,28 +14,24 @@ This is a simple Model Context Protocol (MCP) server implementation for MailboxV
 
 This MCP server requires an API key. You can also [sign up](https://www.mailboxvalidator.com/plans) for a free API key and enjoy up to 300 queries per month.
 
-The setup also use `Node.js` and `npm`, which can be downloaded at [Node.js website](https://nodejs.org/en/download).
+The setup also uses `Node.js` and `npm`, which can be downloaded at [Node.js website](https://nodejs.org/en/download).
 
 # Setup
 
 Follow the steps to use this MCP server with Claude Desktop:
- 1. Download the repository to your local.
- 2. Run the following commands while inside the project folder to install dependencies and build the server.
-```bash
-npm install
-npm run build
-```
- 3. Make sure you have installed the Claude Desktop, if you haven't, kindly download from [here](https://claude.ai/download) for Windows and MacOS users, or follow [this guide](https://modelcontextprotocol.io/quickstart/client) for Linux user.
- 4. Open the `claude_desktop_config.json` in your choice of editor, if you do not having one yet, follow [this guide](https://modelcontextprotocol.io/quickstart/server#testing-your-server-with-claude-for-desktop) to create one.
- 5. Add the following to your `claude_desktop_config.json`:
+1. Make sure you have installed Node.js and npm.
+2. Make sure you have installed Claude Desktop. If you haven't, kindly download from [here](https://claude.ai/download) for Windows and macOS users, or follow [this guide](https://modelcontextprotocol.io/quickstart/client) for Linux users.
+3. Open `claude_desktop_config.json`. If you don't have that file yet, follow [this guide](https://modelcontextprotocol.io/quickstart/server#testing-your-server-with-claude-for-desktop) to create one.
+4. Add the following configuration:
 
 ```json
 {
   "mcpServers": {
     "mailboxvalidator": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "C:\\path\\to\\mcp-mailboxvalidator\\build\\index.js"
+        "-y",
+        "mcp-mailboxvalidator"
       ],
       "env": {
         "MAILBOXVALIDATOR_API_KEY": "<YOUR_API_KEY>"
@@ -44,15 +40,14 @@ npm run build
   }
 }
 ```
- 6. Remember to replace the path for the `index.js` with your actual path to your MailboxValidator MCP server on your local machine.
- 7. To get your API key, just [login](https://www.mailboxvalidator.com/login) to your dashboard and get it from there. Replaced the `<YOUR_API_KEY>` in the above with your actual API key.
- 8. Restart the Claude Desktop after save the changes, and you should see it appear in the `Search and tools` menu.
+5. To get your API key, just [login](https://www.mailboxvalidator.com/login) to your dashboard and get it from there. Replace `<YOUR_API_KEY>` in the above with your actual API key.
+6. Restart the Claude Desktop after saving the changes, and you should see it appear in the `Search and tools` menu.
 
 # Usage
 
-Just enter your query about the email address in a chat in Claude Desktop. Some of the example query will be:
+Just enter your query about the email address in a chat in Claude Desktop. Some of example queries are:
 
-- Is (email) a valid enail address?
+- Is (email) a valid email address?
 - Is (email) a fake email?
 - Is (email) a free email?
 
@@ -83,7 +78,7 @@ A JSON string containing the validation data. The result includes the following 
 - Greylisting: Checks if MX server is using greylisting that could cause email sent to that address to bounce.
 - Disposable List: Checks if the email domain is from a temporary or disposable email provider.
 - High Risk & Suppressed List: Checks if email username looks high-risk or if the email address is found in a suppression list.
-- Others: Checks the reputation score for the email and so much more..
+- Others: Checks the reputation score for the email and more..
 
 If the request fails, the tool will return an error message as a string.
 

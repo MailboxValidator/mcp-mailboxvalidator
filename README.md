@@ -19,19 +19,24 @@ The setup also uses `Node.js` and `npm`, which can be downloaded at [Node.js web
 # Setup
 
 Follow the steps to use this MCP server with Claude Desktop:
-1. Make sure you have installed Node.js and npm.
-2. Make sure you have installed Claude Desktop. If you haven't, kindly download from [here](https://claude.ai/download) for Windows and macOS users, or follow [this guide](https://modelcontextprotocol.io/quickstart/client) for Linux users.
-3. Open `claude_desktop_config.json`. If you don't have that file yet, follow [this guide](https://modelcontextprotocol.io/quickstart/server#testing-your-server-with-claude-for-desktop) to create one.
-4. Add the following configuration:
+1. Download the repository to your local.
+2. Run the following commands while inside the project folder to install dependencies and build the server.
+
+```bash
+npm install
+npm run build
+```
+3. Make sure you have installed Claude Desktop. If you haven't, kindly download from [here](https://claude.ai/download) for Windows and macOS users, or follow [this guide](https://modelcontextprotocol.io/quickstart/client) for Linux users.
+4. Open `claude_desktop_config.json`. If you don't have that file yet, follow [this guide](https://modelcontextprotocol.io/quickstart/server#testing-your-server-with-claude-for-desktop) to create one.
+5. Add the following to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "mailboxvalidator": {
-      "command": "npx",
+      "command": "node",
       "args": [
-        "-y",
-        "mcp-mailboxvalidator"
+        "C:\\path\\to\\mcp-mailboxvalidator\\build\\index.js"
       ],
       "env": {
         "MAILBOXVALIDATOR_API_KEY": "<YOUR_API_KEY>"
@@ -40,8 +45,9 @@ Follow the steps to use this MCP server with Claude Desktop:
   }
 }
 ```
-5. To get your API key, just [login](https://www.mailboxvalidator.com/login) to your dashboard and get it from there. Replace `<YOUR_API_KEY>` in the above with your actual API key.
-6. Restart the Claude Desktop after saving the changes, and you should see it appear in the `Search and tools` menu.
+ 6. Remember to replace the path for the `index.js` with your actual path to your MailboxValidator MCP server on your local machine.
+ 7. To get your API key, just [login](https://www.mailboxvalidator.com/login) to your dashboard and get it from there. Replace the `<YOUR_API_KEY>` in the above with your actual API key.
+ 8. Restart the Claude Desktop after saving the changes, and you should see it appear in the `Search and tools` menu.
 
 # Usage
 

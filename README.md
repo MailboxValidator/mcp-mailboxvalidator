@@ -14,11 +14,71 @@ This is a simple Model Context Protocol (MCP) server implementation for MailboxV
 
 This MCP server requires an API key. You can also [sign up](https://www.mailboxvalidator.com/plans) for a free API key and enjoy up to 300 queries per month.
 
-The setup also uses `Node.js` and `npm`, which can be downloaded at [Node.js website](https://nodejs.org/en/download).
+The local MCP server setup also uses `Node.js` and `npm`, which can be downloaded at [Node.js website](https://nodejs.org/en/download).
 
 # Setup
 
-Follow the steps to use this MCP server with Claude Desktop:
+There are two ways to use this MCP server:
+
+- **Cloud-hosted MCP server**: Connect directly to the hosted MailboxValidator MCP server. Nothing needs to be installed locally.
+- **Local MCP server**: Download and run the server on your own machine.
+
+## Option 1: Cloud-hosted MCP server
+
+Use this if you want to connect directly to the hosted server.
+
+### Method A: Direct HTTP connection
+
+Use this if your MCP client supports remote servers over HTTP. No Node.js, `npm`, or `npx` is needed.
+
+```json
+{
+  "mcpServers": {
+    "mailboxvalidator": {
+      "type": "http",
+      "url": "https://mcp.mailboxvalidator.com/mcp",
+      "headers": {
+        "X-API-Key": "<YOUR_API_KEY>"
+      }
+    }
+  }
+}
+```
+
+If your client is configured from the command line, such as Claude Code, you can add the server with:
+
+```bash
+claude mcp add --transport http mailboxvalidator https://mcp.mailboxvalidator.com/mcp --header "X-API-Key: <YOUR_API_KEY>"
+```
+
+### Method B: Connection through `npx`
+
+Use this if your MCP client only supports local (stdio) servers. The `mcp-remote` package runs locally and forwards requests to the hosted server. Node.js is required.
+
+```json
+{
+  "mcpServers": {
+    "mailboxvalidator": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.mailboxvalidator.com/mcp",
+        "--header",
+        "X-API-Key:<YOUR_API_KEY>"
+      ]
+    }
+  }
+}
+```
+
+To get your API key, just [login](https://www.mailboxvalidator.com/login) to your dashboard and get it from there, then replace `<YOUR_API_KEY>` in the example above with your actual API key.
+
+Restart the Claude Desktop after saving the changes, and you should see it appear in the `Search and tools` menu.
+
+## Option 2: Local MCP server
+
+Follow the steps to run the MCP server on your own machine:
 1. Download the repository to your local.
 2. Run the following commands while inside the project folder to install dependencies and build the server.
 
